@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "A project to insert customer information into database",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "lint": "eslint .",
+    "dev": "NODE_ENV=development nodemon -w src --exec \"babel-node src\""
   },
   "author": "",
   "license": "ISC",
