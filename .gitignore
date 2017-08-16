@@ -1,0 +1,11 @@
+# IDEA
+.idea/
+
+# vim Swap Files
+*.swp
+
+# Mac OSX
+.DS_Store
+
+# Node
+node_modules/
