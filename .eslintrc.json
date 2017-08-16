@@ -11,9 +11,7 @@
   },
   "env": {
     "node": true,
-    "mocha": true,
-    "jquery": true,
-    "browser": true
+    "mocha": true
   }
 }
 
