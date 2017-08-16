@@ -2,8 +2,6 @@
 import Projects from '../model/projects';
 import Users from '../model/users';
 
-// let newProject = new Project();
-
 class ProjectController {
     constructor(username, projectName) {
         this.username = username;
