@@ -9,6 +9,8 @@ const projectSchema = new Schema({
     users: [String],
 });
 
+const project = mongoose.model('Projects', projectSchema);
+
 export {
-    projectSchema as default,
+    project as default,
 };
