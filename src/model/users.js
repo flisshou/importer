@@ -17,8 +17,8 @@ const userSchema = new Schema({
     createdAt: Date,
 });
 
-const user = mongoose.model('User', userSchema);
+const users = mongoose.model('Users', userSchema);
 
 export {
-  user as default,
+  users as default,
 };
