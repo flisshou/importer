@@ -13,3 +13,7 @@ node_modules/
 # Transpiled
 dist/
 
+# Others
+src/config/
+src/controller/logs/
+
