@@ -75,7 +75,8 @@ class ProjectController {
     }
 
     removeProject() {
-        Projects.findOneAndRemove({ name: this.projectName }, (err) => {
+        const condition = { name: this.projectName };
+        Projects.findOneAndRemove(condition, (err) => {
             if (err) throw err;
             console.log(`Removed Project - ${this.projectName}`);
         });
