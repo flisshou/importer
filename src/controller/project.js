@@ -31,7 +31,26 @@ class ProjectController {
     setUser() {
         // if (!(this.projectExists && this.userExists)) throw ReferenceError;
 
-        // if ()
+        console.log(`this.projectExists = ${this.projectExists}\tthis.userExists = ${this.userExists}`);
+    }
+
+    addProject() {
+        const newProject = Projects({
+            name: this.projectName,
+            created: new Date(),
+            users: [],
+        });
+        newProject.save((err) => {
+            if (err) throw err;
+            console.log(`Created Project - ${this.projectName}`);
+        });
+    }
+
+    removeProject() {
+        Projects.findOneAndRemove({ name: this.projectName }, (err) => {
+            if (err) throw err;
+            console.log(`Removed Project - ${this.projectName}`);
+        });
     }
 }
 
