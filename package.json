@@ -5,7 +5,8 @@
   "scripts": {
     "test": "mocha",
     "lint": "eslint .",
-    "dev": "NODE_ENV=development nodemon -w src --exec \"babel-node src\""
+    "dev": "NODE_ENV=development nodemon -w src --exec \"babel-node src\"",
+    "setest": "nodemon -w src --exec \"babel-node src/setTestEnv.js\""
   },
   "author": "",
   "license": "ISC",
