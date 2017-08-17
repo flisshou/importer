@@ -33,19 +33,33 @@ class ProjectController {
         });
     }
 
-    checkProject() {
-        Projects.find({ name: this.projectName }, (err, project) => {
-            if (err) throw err;
-            this.projectPreviousUsers = project.users;
-            this.projectExists = true;
-            console.log(`projectPreviousUsers = ${project.users}`);
-        });
-    }
-
     setUser() {
-        // if (!(this.projectExists && this.userExists)) throw ReferenceError;
+        this.checkArguments((err, ret) => {
+            if (err) throw err;
+            const uLength = ret.existsUser.length;
+            const pLength = ret.existsProject.length;
+            this.logger.debug(`Project_${this.projectName} --- (uLength, pLength) = (${uLength}, ${pLength})`);
 
-        console.log(`this.projectExists = ${this.projectExists}\tthis.userExists = ${this.userExists}`);
+            if (uLength !== 1 || pLength !== 1) {
+                if (uLength === 0) {
+                    this.logger.info(`Project ${this.projectName} cannot find match username ${this.username}`);
+                    return;
+                } else if (pLength === 0) {
+                    this.logger.info(`Database does not exist Project ${this.projectName}`);
+                    return;
+                } else if (uLength > 1 || pLength > 1) {
+                    this.logger.info('Project or Username is not unique');
+                    return;
+                }
+            }
+
+            const condition = { name: this.projectName };
+            const update = { $addToSet: { users: ret.existsUser[0].id } };
+            Projects.findOneAndUpdate(condition, update, () => {
+                this.logger.info(`Updated Project - ${this.projectName}`);
+            });
+            console.log(ret);
+        });
     }
 
     addProject() {
