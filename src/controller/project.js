@@ -15,6 +15,7 @@ class ProjectController {
             if (err) throw err;
             this.userId = user.id;
             this.userExists = true;
+            console.log(`userId = ${this.userId}`);
         });
     }
 
@@ -23,11 +24,12 @@ class ProjectController {
             if (err) throw err;
             this.projectPreviousUsers = project.users;
             this.projectExists = true;
+            console.log(`projectPreviousUsers = ${project.users}`);
         });
     }
 
     setUser() {
-        if (!(this.projectExists && this.userExists)) throw ReferenceError;
+        // if (!(this.projectExists && this.userExists)) throw ReferenceError;
 
         // if ()
     }
