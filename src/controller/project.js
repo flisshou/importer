@@ -81,6 +81,24 @@ class ProjectController {
             console.log(`Removed Project - ${this.projectName}`);
         });
     }
+
+    setLogger() {
+        this.logger = new (winston.Logger)({
+            transports: [
+                new (winston.transports.Console)(),
+                new (winston.transports.File)({
+                    filename: `${__dirname}/logs/info.log`,
+                    name: 'info-file',
+                    level: 'info',
+                }),
+                new (winston.transports.File)({
+                    filename: `${__dirname}/logs/debug.log`,
+                    name: 'debug-file',
+                    level: 'debug',
+                }),
+            ],
+        });
+    }
 }
 
 export {
