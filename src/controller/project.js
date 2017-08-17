@@ -9,16 +9,27 @@ class ProjectController {
     constructor(username, projectName) {
         this.username = username;
         this.projectName = projectName;
-        this.checkUsername();
-        this.checkProject();
+        this.setLogger();
     }
 
-    checkUsername() {
-        Users.find({ username: this.username }, (err, user) => {
-            if (err) throw err;
-            this.userId = user.id;
-            this.userExists = true;
-            console.log(`userId = ${this.userId}`);
+    checkArguments(callback) {
+        parallel({
+            checkUsername: (cb) => {
+                Users.find({ username: this.username }, (err, user) => {
+                    cb(err, user);
+                });
+            },
+            checkProject: (cb) => {
+                Projects.find({ name: this.projectName }, (err, project) => {
+                    cb(err, project);
+                });
+            },
+        }, (err, result) => {
+            const ret = {
+                existsUser: result.checkUsername,
+                existsProject: result.checkProject,
+            };
+            callback(err, ret);
         });
     }
 
