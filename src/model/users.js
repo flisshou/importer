@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
+    _id: String,
     username: String,
     profile: {
         name: String,
